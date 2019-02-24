@@ -40,15 +40,6 @@ services:
       - LABELS_ONLY=true
     restart: unless-stopped
 
-  ddclient:
-    image: linuxserver/ddclient
-    container_name: ddclient
-    volumes:
-      - ${CONFIG}/ddclient:/config
-    labels:
-      com.ouroboros.enable: "true"
-    restart: unless-stopped
-
   nzbget:
     image: linuxserver/nzbget:latest
     container_name: nzbget
