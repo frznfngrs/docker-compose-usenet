@@ -174,28 +174,7 @@ services:
       com.ouroboros.enable: "true"
     restart: unless-stopped
 
-  nzbhydra:
-    image: linuxserver/hydra2:latest
-    container_name: nzbhydra
-    hostname: nzbhydra
-    ports:
-      - "5076:5076"
-    volumes:
-      - ${CONFIG}/nzbhydra2:/config
-      - ${DOWNLOAD}/complete:/downloads
-    environment:
-      - PGID
-      - PUID
-      - TZ
-    labels:
-      traefik.enable: "true"
-      traefik.port: "5076"
-      traefik.frontend.rule: "Host:nzbhydra.${DOMAIN}"
-      traefik.frontend.auth.basic: "${HTPASSWD}"
-      com.ouroboros.enable: "true"
-    restart: unless-stopped
-
-  plex:
+plex:
     image: linuxserver/plex
     container_name: plex
     hostname: plex
