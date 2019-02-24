@@ -96,6 +96,7 @@ services:
       - ${CONFIG}/radarr:/config
       - ${DOWNLOAD}/complete:/downloads
       - ${DATA}/movies:/movies
+      - ${DATA}/kidsmovies:/media/kidsmovies
     environment:
       - PGID
       - PUID
@@ -151,29 +152,6 @@ services:
       traefik.frontend.auth.basic: "${HTPASSWD}"
       com.ouroboros.enable: "true"
     restart: unless-stopped
-
-  mylar:
-    image: linuxserver/mylar:latest
-    container_name: mylar
-    hostname: mylar
-    ports:
-      - "8090:8090"
-    volumes:
-      - ${CONFIG}/mylar:/config
-      - ${DOWNLOAD}/complete:/downloads
-      - ${DATA}/comics:/comics
-    environment:
-      - PGID
-      - PUID
-      - TZ
-    labels:
-      traefik.enable: "true"
-      traefik.port: "8090"
-      traefik.frontend.rule: "Host:mylar.${DOMAIN}"
-      traefik.frontend.auth.basic: "${HTPASSWD}"
-      com.ouroboros.enable: "true"
-    restart: unless-stopped
-
 plex:
     image: linuxserver/plex
     container_name: plex
@@ -190,6 +168,7 @@ plex:
       - ${DATA}/movies:/media/movies
       - ${DATA}/music:/media/music
       - ${DATA}/anime:/media/anime
+      - ${DATA}/kidsmovies:/media/kidsmovies
     environment:
       - PGID
       - PUID
